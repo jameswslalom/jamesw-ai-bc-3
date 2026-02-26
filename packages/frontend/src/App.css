@@ -92,3 +92,33 @@ li:last-child {
   color: #d32f2f;
   font-weight: bold;
 }
+
+/* Priority Item Styles */
+.priority-item {
+  color: #7A7A7A;
+  transition: color 0.2s ease;
+}
+
+.priority-item.selected {
+  color: #07F2E6;
+}
+
+.priority-chip {
+  background-color: #7A7A7A;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.priority-chip.selected {
+  background-color: #07F2E6;
+  color: white;
+}
+
+.priority-selector .priority-option {
+  color: #7A7A7A;
+}
+
+.priority-selector .priority-option:hover,
+.priority-selector .priority-option.selected {
+  color: #07F2E6;
+}
