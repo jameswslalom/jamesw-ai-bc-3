@@ -12,21 +12,22 @@ const server = setupServer(
     return res(
       ctx.status(200),
       ctx.json([
-        { id: 1, title: 'Test Task 1', description: 'Desc 1', due_date: '2025-09-30', completed: 0 },
-        { id: 2, title: 'Test Task 2', description: 'Desc 2', due_date: '2025-10-01', completed: 1 },
+        { id: 1, title: 'Test Task 1', description: 'Desc 1', due_date: '2025-09-30', priority: 'P1', completed: 0 },
+        { id: 2, title: 'Test Task 2', description: 'Desc 2', due_date: '2025-10-01', priority: 'P2', completed: 1 },
       ])
     );
   }),
 
   // POST /api/tasks handler
   rest.post('/api/tasks', (req, res, ctx) => {
-    const { title } = req.body;
+    const { title, priority } = req.body;
     if (!title || title.trim() === '') {
       return res(
         ctx.status(400),
         ctx.json({ error: 'Task title is required' })
       );
     }
+    const validPriority = ['P1', 'P2', 'P3'].includes(priority) ? priority : 'P3';
     return res(
       ctx.status(201),
       ctx.json({
@@ -34,6 +35,7 @@ const server = setupServer(
         title,
         description: req.body.description || '',
         due_date: req.body.due_date || null,
+        priority: validPriority,
         completed: 0,
       })
     );

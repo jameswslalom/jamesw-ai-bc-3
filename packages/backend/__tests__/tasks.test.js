@@ -11,12 +11,13 @@ describe('Tasks API', () => {
   it('should create a new task', async () => {
     const res = await request(app)
       .post('/api/tasks')
-      .send({ title: 'Test Task', description: 'A test task', due_date: '2025-09-30' });
+      .send({ title: 'Test Task', description: 'A test task', due_date: '2025-09-30', priority: 'P1' });
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty('id');
     expect(res.body.title).toBe('Test Task');
     expect(res.body.description).toBe('A test task');
     expect(res.body.due_date).toBe('2025-09-30');
+    expect(res.body.priority).toBe('P1');
     expect(res.body.completed).toBe(0);
     taskId = res.body.id;
   });
@@ -37,11 +38,12 @@ describe('Tasks API', () => {
   it('should update a task', async () => {
     const res = await request(app)
       .put(`/api/tasks/${taskId}`)
-      .send({ title: 'Updated Task', description: 'Updated', due_date: '2025-10-01' });
+      .send({ title: 'Updated Task', description: 'Updated', due_date: '2025-10-01', priority: 'P2' });
     expect(res.status).toBe(200);
     expect(res.body.title).toBe('Updated Task');
     expect(res.body.description).toBe('Updated');
     expect(res.body.due_date).toBe('2025-10-01');
+    expect(res.body.priority).toBe('P2');
   });
 
   it('should mark a task as completed', async () => {
@@ -55,5 +57,21 @@ describe('Tasks API', () => {
   it('should delete a task', async () => {
     const res = await request(app).delete(`/api/tasks/${taskId}`);
     expect(res.status).toBe(204);
+  });
+
+  it('should default priority to P3 when not provided', async () => {
+    const res = await request(app)
+      .post('/api/tasks')
+      .send({ title: 'Task without priority' });
+    expect(res.status).toBe(201);
+    expect(res.body.priority).toBe('P3');
+  });
+
+  it('should validate priority values', async () => {
+    const res = await request(app)
+      .post('/api/tasks')
+      .send({ title: 'Task with invalid priority', priority: 'INVALID' });
+    expect(res.status).toBe(201);
+    expect(res.body.priority).toBe('P3'); // Should default to P3
   });
 });

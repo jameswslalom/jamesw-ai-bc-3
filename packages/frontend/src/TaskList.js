@@ -5,6 +5,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EventIcon from '@mui/icons-material/Event';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 
 function TaskList({ onEdit }) {
   const [tasks, setTasks] = useState([]);
@@ -25,6 +26,15 @@ function TaskList({ onEdit }) {
       month: 'short', 
       day: 'numeric' 
     });
+  };
+
+  const getPriorityColor = (priority) => {
+    switch (priority) {
+      case 'P1': return { bg: '#f44336', color: 'white' }; // Red
+      case 'P2': return { bg: '#ff9800', color: 'white' }; // Orange
+      case 'P3': return { bg: '#9e9e9e', color: 'white' }; // Gray
+      default: return { bg: '#9e9e9e', color: 'white' };
+    }
   };
 
   const fetchTasks = async () => {
@@ -203,6 +213,24 @@ function TaskList({ onEdit }) {
                 gap: 1
               }}
             >
+              {task.priority && (
+                <Chip
+                  icon={<PriorityHighIcon sx={{ fontSize: 14 }} />}
+                  label={task.priority}
+                  size="small"
+                  sx={{
+                    height: 20,
+                    fontSize: '0.7rem',
+                    fontWeight: 500,
+                    backgroundColor: getPriorityColor(task.priority).bg,
+                    color: getPriorityColor(task.priority).color,
+                    mr: 0.5,
+                    '& .MuiChip-icon': {
+                      color: getPriorityColor(task.priority).color
+                    }
+                  }}
+                />
+              )}
               {task.due_date && (
                 <Chip
                   icon={<EventIcon sx={{ fontSize: 14 }} />}
