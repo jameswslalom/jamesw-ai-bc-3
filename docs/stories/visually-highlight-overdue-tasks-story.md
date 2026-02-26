@@ -2,4 +2,6 @@
 
 ## Acceptance Criteria
 
-- Overdue tasks are visually highlighted.
+- Given a task is overdue
+	When tasks are displayed
+	Then the overdue task is visually highlighted.

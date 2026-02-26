@@ -2,5 +2,9 @@
 
 ## Acceptance Criteria
 
-- In `Overdue`, only incomplete tasks are shown.
-- In `Overdue`, completed tasks are not shown.
+- Given tasks include completed and incomplete overdue items
+	When the `Overdue` filter is selected
+	Then only incomplete tasks are shown.
+- Given tasks include completed and incomplete overdue items
+	When the `Overdue` filter is selected
+	Then completed tasks are not shown.

@@ -2,4 +2,6 @@
 
 ## Acceptance Criteria
 
-- New tasks created without an explicit priority are stored with priority value "P3".
+- Given a new task is created
+	When no explicit `priority` is provided
+	Then the stored `priority` value is `P3`.

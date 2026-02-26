@@ -2,4 +2,6 @@
 
 ## Acceptance Criteria
 
-- The app provides filter options named `All`, `Today`, and `Overdue`.
+- Given the task list view is available
+	When filter options are shown
+	Then the options include `All`, `Today`, and `Overdue`.

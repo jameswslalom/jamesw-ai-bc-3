@@ -2,5 +2,9 @@
 
 ## Acceptance Criteria
 
-- In `Today`, only incomplete tasks are shown.
-- In `Today`, completed tasks are not shown.
+- Given tasks include completed and incomplete items for today
+	When the `Today` filter is selected
+	Then only incomplete tasks are shown.
+- Given tasks include completed and incomplete items for today
+	When the `Today` filter is selected
+	Then completed tasks are not shown.

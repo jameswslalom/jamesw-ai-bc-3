@@ -2,5 +2,9 @@
 
 ## Acceptance Criteria
 
-- `dueDate` is optional.
-- Invalid `dueDate` values are ignored and treated as absent.
+- Given a task is created or updated
+	When no `dueDate` is provided
+	Then the task remains valid.
+- Given a task is created or updated with `dueDate`
+	When the `dueDate` value is invalid
+	Then the invalid value is ignored and treated as absent.

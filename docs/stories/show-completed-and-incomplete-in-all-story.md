@@ -2,5 +2,9 @@
 
 ## Acceptance Criteria
 
-- In `All`, completed tasks are shown.
-- In `All`, incomplete tasks are shown.
+- Given tasks include completed and incomplete items
+	When the `All` filter is selected
+	Then completed tasks are shown.
+- Given tasks include completed and incomplete items
+	When the `All` filter is selected
+	Then incomplete tasks are shown.

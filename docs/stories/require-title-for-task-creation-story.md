@@ -2,5 +2,9 @@
 
 ## Acceptance Criteria
 
-- Task creation requires `title`.
-- Tasks without `title` are not accepted as valid.
+- Given a user creates a task
+	When `title` is provided
+	Then the task satisfies the title requirement.
+- Given a user creates a task
+	When `title` is missing
+	Then the task is not accepted as valid.

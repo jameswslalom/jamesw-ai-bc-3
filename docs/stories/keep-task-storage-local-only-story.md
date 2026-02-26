@@ -2,5 +2,9 @@
 
 ## Acceptance Criteria
 
-- Task storage remains local only.
-- No backend or external storage is introduced.
+- Given tasks are persisted
+	When persistence behavior is validated
+	Then task storage remains local only.
+- Given the MVP scope
+	When storage integrations are reviewed
+	Then no backend or external storage is introduced.
